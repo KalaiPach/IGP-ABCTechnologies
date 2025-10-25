@@ -1,0 +1,38 @@
+pipeline
+{
+	agent any
+	stages
+	{
+		stage('Checkout')
+		{
+			steps
+			{
+				git branch: 'main', url: 'https://github.com/KalaiPach/IGP-ABCTechnologies.git'
+			}
+		}
+		
+		stage('Code Compile')
+		{
+			steps
+			{
+				sh 'mvn compile'
+			}
+		}
+
+		stage('Test')
+		{
+			steps
+			{
+				sh 'mvn test'
+			}
+		}
+
+		stage('Code packaging')
+		{
+			steps
+			{
+				sh 'mvn package'
+			}
+		}
+	}
+}
